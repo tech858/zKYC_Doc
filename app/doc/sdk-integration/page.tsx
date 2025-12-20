@@ -2,16 +2,14 @@ import CopyCode from '../_components/CopyCode';
 import DocPageLayout from '../_components/DocPageLayout';
 
 const processExample = `"use client";
-import { ZKYCProcess } from "zkyc-lfg";
+import { ZKYCProcess } from "zkyc-sdk-package";
 
 export default function Example() {
   return (
     <button
       onClick={() =>
         ZKYCProcess(
-          "df232ee0-b0e9-479d-9d4e-bb97e4d77472", // user/session id
           "test_f891b652bbf3005a23fffc8b3f78ada4ee8424eca4bf553d", // test API key
-          "OCR", // service: "OCR" | "FaceLive" | "All" | null
           "https://yourapp.com/failure", // failure redirect
           "https://yourapp.com/pending" // success/pending redirect
         )
@@ -24,11 +22,10 @@ export default function Example() {
 }`;
 
 const statusExample = `const res = await fetch(
-  \`https://sdk.zkyc.tech/api/kyc/verifications/\${userId}\`,
+  \`https://sdk.zkyc.tech/api/kyc/verifications/\${ApplicantId}\`,
   {
     method: "GET",
     headers: {
-      "x-user-id": clientId,
       "x-api-key": apiKey,
     },
   }
@@ -50,7 +47,7 @@ export default function SdkIntegrationPage() {
         <Step
           title="Install"
           description="Add the SDK to your application."
-          body={<CopyCode code="npm i zkyc-lfg@latest" label="Install zKYC" />}
+          body={<CopyCode code="npm i zkyc-sdk-package@latest" label="Install zKYC" />}
         />
         <Step
           title="Call the flow"
@@ -79,18 +76,12 @@ export default function SdkIntegrationPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-white/5">
-              <tr className="hover:bg-white/5 transition-colors">
-                <td className="px-4 py-3 font-mono text-blue-300">userId</td>
-                <td className="px-4 py-3 text-slate-200">Unique identifier of the user/session.</td>
-              </tr>
+              
               <tr className="hover:bg-white/5 transition-colors">
                 <td className="px-4 py-3 font-mono text-blue-300">apiKey</td>
                 <td className="px-4 py-3 text-slate-200">Your API key (test or production).</td>
               </tr>
-              <tr className="hover:bg-white/5 transition-colors">
-                <td className="px-4 py-3 font-mono text-blue-300">serviceType</td>
-                <td className="px-4 py-3 text-slate-200">Verification type: OCR, Liveness, All, or null for basic IDV.</td>
-              </tr>
+             
               <tr className="hover:bg-white/5 transition-colors">
                 <td className="px-4 py-3 font-mono text-blue-300">failurePage</td>
                 <td className="px-4 py-3 text-slate-200">URL to redirect the user if verification fails.</td>
