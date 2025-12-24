@@ -1,0 +1,48 @@
+---
+title: Macro architecture
+description: A high-level look at how all zKYC services will operate.
+---
+# zKYC identity verification
+<div >
+  ![zKYC Macro Architecture](/images/Diagrams/Diagram.png)
+</div>
+
+## End-to-end lifecycle
+
+1. User starts verification in the secure zKYC environment.
+2. zKYC performs document + facematch + liveness checks.
+3. A reusable proof linked to the users identity is issued to the user and only the user.
+4. The proof is hashed and stored so that the users can verify their identity without the need for a new KYC submition.
+5. After the proof is collected the user is redirect to the success page created by the zKYC clients.
+
+### zKPass Proofs
+
+Proofs are small digital confirmations that show a verification was successful. They don’t contain personal documents or sensitive information. Instead, they act like a receipt that anyone can check to confirm the result.
+This means you can prove compliance and trustworthiness without exposing user data, keeping privacy fully protected.
+
+# zKYC AI agent transaction
+
+<div>
+  ![zKYC Macro Architecture](/images/Diagrams/agentDiagram.png)
+</div>
+
+## End-to-end lifecycle
+
+1. AI agent select a service from the registered services in zKYC.
+2. After selecting a service the agent request the price from the service.
+3. Service send to the Ai agent the a proposal for a pricing.
+4. If the ai  approved the proposed quota then a handshake between agent and service is created.
+5. Agent proceed to payment in th blockchain.
+6. Service execute their payment responce.
+
+# zKYC identity commitment
+<div >
+  ![zKYC Macro Architecture](/images/Diagrams/aptos_diagram.png)
+</div>
+## End-to-end lifecycle
+
+1. User starts verification in the secure zKYC environment.
+2. zKYC performs document + facematch + liveness checks.
+3. User connect their wallet to zKYC platform.
+4. A reusable proof linked to the users identity is issued to the user and only the user.
+5. The proof is hashed and stored off-chain and on-chain in the Aptos blockchain.

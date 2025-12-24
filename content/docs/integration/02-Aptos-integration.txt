@@ -1,0 +1,43 @@
+---
+title: Aptos 
+---
+import Link from 'next/link';
+
+export function Thing() {
+  return <>  
+<div className="w-full bg-red-500">
+
+  <video
+    className="w-full h-auto"
+    controls
+    preload="none"
+  >
+    <source src="/path/to/video.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+</div>
+
+
+      
+      </>
+}
+
+## Introduction
+Among the many things people value, privacy is one of the most precious—and also one of the most fragile.
+In today’s digital world, personal data is constantly collected, stored, and shared.
+A single breach can permanently expose an individual’s identity, despite regulations designed to protect it, creating a fear that everyone shares: that our private information could one day fall into the hands of strangers.
+
+zKYC was conceived to solve this problem.
+It is a platform that validates the authenticity of an identity, whether belonging to a human user or an AI agent.
+Leveraging zero-knowledge protocols, zKYC verifies a user’s identity without exposing sensitive data and generates a cryptographic proof that is issued exclusively to the user.
+Additionally, the user can connect their Keplr wallet and store the hash of their proof (called a commitment) on the Aptos blockchain.
+For AI agents, zKYC uses blockchain standards ERC8004 and X402 to create and assign verifiable credentials, enabling agents to securely execute transactions on-chain.
+<Thing />
+
+## Key benefits
+
+- **Privacy-first**: Personal data stays protected
+- **Reusable proofs**: One verification, many uses
+- **Faster onboarding**: Fewer steps for users
+- **Compliance-ready**: Supports KYC/ERC8004  standards
+

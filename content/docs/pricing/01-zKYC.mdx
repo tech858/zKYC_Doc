@@ -1,0 +1,118 @@
+---
+title: KYC
+---
+
+import { CheckIcon, MinusIcon, PlusIcon } from '../../_components/icons'
+import DocPageLayout from '../../_components/DocPageLayout'
+
+<DocPageLayout
+  badge="Pricing"
+  title="Plans at a glance"
+  description="Compare verification coverage and costs across zKYC plans."
+>
+  <div className="mb-10 overflow-x-auto rounded-2xl border border-white/10 bg-white/5">
+    <table className="w-full min-w-[720px] text-left text-sm">
+      <thead className="bg-white/5">
+        <tr>
+          <th className="px-4 py-4 font-semibold text-white">Feature</th>
+          <th className="px-4 py-4 font-semibold text-white">Basic</th>
+          <th className="px-4 py-4 font-semibold text-white">Standard</th>
+          <th className="px-4 py-4 font-semibold text-white">Full KYC</th>
+        </tr>
+      </thead>
+      <tbody className="divide-y divide-white/5">
+        <tr>
+          <td className="px-4 py-4 font-medium text-slate-200">Initial deposit</td>
+          <td className="px-4 py-4">$100</td>
+          <td className="px-4 py-4">Let's talk</td>
+          <td className="px-4 py-4">Let's talk</td>
+        </tr>
+
+        <tr>
+          <td className="px-4 py-4 font-medium text-slate-200">
+            Document verification + OCR
+          </td>
+          <td className="px-4 py-4"><CheckIcon className="h-5 w-5 text-emerald-300" /></td>
+          <td className="px-4 py-4"><CheckIcon className="h-5 w-5 text-emerald-300" /></td>
+          <td className="px-4 py-4"><CheckIcon className="h-5 w-5 text-emerald-300" /></td>
+        </tr>
+
+        <tr>
+          <td className="px-4 py-4 font-medium text-slate-200">
+            Facial verification (liveness)
+          </td>
+          <td className="px-4 py-4"><CheckIcon className="h-5 w-5 text-emerald-300" /></td>
+          <td className="px-4 py-4"><CheckIcon className="h-5 w-5 text-emerald-300" /></td>
+          <td className="px-4 py-4"><CheckIcon className="h-5 w-5 text-emerald-300" /></td>
+        </tr>
+
+        <tr>
+          <td className="px-4 py-4 font-medium text-slate-200">
+            Zero-knowledge proofs
+          </td>
+          <td className="px-4 py-4"><CheckIcon className="h-5 w-5 text-emerald-300" /></td>
+          <td className="px-4 py-4"><CheckIcon className="h-5 w-5 text-emerald-300" /></td>
+          <td className="px-4 py-4"><CheckIcon className="h-5 w-5 text-emerald-300" /></td>
+        </tr>
+        <tr>
+          <td className="px-4 py-4 font-medium text-slate-200">
+            Emailing service
+          </td>
+          <td className="px-4 py-4"><MinusIcon className="h-5 w-5 text-slate-400" /></td>
+          <td className="px-4 py-4"><CheckIcon className="h-5 w-5 text-emerald-300" /></td>
+          <td className="px-4 py-4"><CheckIcon className="h-5 w-5 text-emerald-300" /></td>
+        </tr>
+        <tr>
+          <td className="px-4 py-4 font-medium text-slate-200">AML screening</td>
+          <td className="px-4 py-4"><MinusIcon className="h-5 w-5 text-slate-400" /></td>
+          <td className="px-4 py-4"><PlusIcon className="h-5 w-5 text-amber-300" /></td>
+          <td className="px-4 py-4"><CheckIcon className="h-5 w-5 text-emerald-300" /></td>
+        </tr>
+
+        <tr>
+          <td className="px-4 py-4 font-medium text-slate-200">
+            Address verification
+          </td>
+          <td className="px-4 py-4"><MinusIcon className="h-5 w-5 text-slate-400" /></td>
+          <td className="px-4 py-4"><PlusIcon className="h-5 w-5 text-amber-300" /></td>
+          <td className="px-4 py-4"><CheckIcon className="h-5 w-5 text-emerald-300" /></td>
+        </tr>
+
+        <tr>
+          <td className="px-4 py-4 font-medium text-slate-200">
+            Video verification
+          </td>
+          <td className="px-4 py-4"><MinusIcon className="h-5 w-5 text-slate-400" /></td>
+          <td className="px-4 py-4"><MinusIcon className="h-5 w-5 text-slate-400" /></td>
+          <td className="px-4 py-4"><CheckIcon className="h-5 w-5 text-emerald-300" /></td>
+        </tr>
+
+        <tr>
+          <td className="px-4 py-4 font-medium text-slate-200">
+            Ongoing monitoring
+          </td>
+          <td className="px-4 py-4"><MinusIcon className="h-5 w-5 text-slate-400" /></td>
+          <td className="px-4 py-4"><MinusIcon className="h-5 w-5 text-slate-400" /></td>
+          <td className="px-4 py-4"><PlusIcon className="h-5 w-5 text-amber-300" /></td>
+        </tr>
+
+        <tr>
+          <td className="px-4 py-4 font-medium text-slate-200">
+            Cost per verification
+          </td>
+          <td className="px-4 py-4">$1.20</td>
+          <td className="px-4 py-4">Let's talk</td>
+          <td className="px-4 py-4">Let's talk</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <section className="rounded-2xl border border-white/10 bg-white/5 p-6 text-sm text-slate-300">
+    <h3 className="mb-3 font-semibold text-white">Notes</h3>
+    <ul className="list-disc space-y-2 pl-5">
+      <li>Minimum monthly spend applies if usage is below $100.</li>
+      <li>Pricing may change with advance notice.</li>
+    </ul>
+  </section>
+</DocPageLayout>

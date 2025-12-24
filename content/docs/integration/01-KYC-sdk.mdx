@@ -1,0 +1,72 @@
+---
+title: KYC sdk
+description: zKYC is a service package that redirects users to the zKYC page, where they go through a KYC verification process.  
+---
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+
+Before integrating the sdk in your end you will need to register in [zKYC](https://app.zkyc.tech "title") then generate your private key. 
+<Steps>
+<Step>
+### Install
+Add the SDK to your application.
+
+```bash
+npm i zkyc-sdk-package@latest
+```
+</Step>
+
+<Step>
+### Call the flow
+Invoke `ZKYCProcess` with the user/session id, your API key, the service type, and redirect URLs.
+
+```tsx
+import React from 'react';
+import { ZKYCProcess } from "zkyc-sdk-package";
+
+export default function KYCButton() {
+  const handleKYC = async () => {
+    try {
+      await ZKYCProcess({
+        apiKey: "prod_bdhZewRkyHQpWNSHmDIMwwLgxOMuAXupzJivNMUONARXKhIWcLQGgiATjRIzpRNB",
+        failurePage: `${window.location.origin}/kyc-failed`,
+        pendingPage: `${window.location.origin}/kyc-pending`,
+      });
+    } catch (error) {
+      console.error('KYC initiation failed:', error);
+      alert('Failed to start KYC process. Please try again.');
+    }
+  };
+
+  return <button onClick={handleKYC}>Start KYC Verification</button>;}
+```
+</Step>
+</Steps>
+
+## Check verification status (API)
+
+Fetch the verification status of your users via our API. Status values include: pending, valid, and invalid.
+```ts
+const res = await fetch(
+  `https://sdk.zkyc.tech/api/kyc/verifications/${ApplicantId}`,
+  {
+    method: "GET",
+    headers: {
+      "x-api-key": apiKey,
+    },
+  }
+);
+
+if (!res.ok) throw new Error(`HTTP error: ${res.status}`);
+const result = await res.json();
+console.log("Verification data", result);
+```
+
+## Required parameters
+
+| Parameter | Description |
+| :--- | :--- |
+| **apiKey** | Your API key (test or production). |
+| **failurePage** | URL to redirect the user if verification fails. |
+| **pendingPage** | URL to redirect the user when verification is pending or complete. |
+
+## [Check our demo project](https://github.com/tech858/aws_zkyc_test "title")

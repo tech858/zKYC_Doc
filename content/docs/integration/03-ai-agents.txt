@@ -1,0 +1,84 @@
+---
+title: Agentique services
+---
+import Link from 'next/link';
+
+
+
+## Introduction
+Our users can leverage zKYC as a platform to register AI agents, 
+equip them with verifiable credentials, and enable them to trade on-chain,
+ or to register services as part of an AI agent marketplace. 
+ This is achieved through the ERC-8004 and X402 standards, 
+ which handle identity verification and on-chain exchange respectively.
+# Ai agent:
+## Prerequisites
+zKYC user will go through a simple KYC process after that the users will receive a proof of their identity.
+Once processed and verified, the user can register their AI agent on the zKYC platform. The agent will be issued  a dedicated verifiable credential, enabling it to securely engage in on-chain trading.
+
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+
+<Steps>
+<Step>
+### Install
+Add the SDK to your application.
+
+```bash
+pip install zkyc-agent
+```
+</Step>
+<Step>
+### Register agent
+Register your AI agent then connect it to the wallet that will be used by the Ai agent to trade on-chain
+
+</Step><Step>
+### Begin trade
+zkyc-agent package contain all the needed function to interact with any of the services registered in zKYC
+
+```bash
+pip install zkyc-agent
+```
+</Step>
+</Steps>
+
+
+# Service registry:
+## Prerequisites
+For services, users must first complete business verification (KYB) as well as personal identity verification. Only after these steps can they register their service on the platform.
+
+## Services registry
+To register the service the user must enter its name and the API route belonging to it
+
+<Steps>
+<Step>
+### Install
+Add the SDK to your application.
+
+```bash
+pip install zkyc-verifier
+```
+</Step>
+</Steps>
+
+``` bash
+from service_sdk import verify_payment, PaymentVerificationError
+```
+
+```bash
+ try:
+        payment_details = verify_payment(
+            rpc_url=config.RPC_URL,
+            tx_hash=tx_hash,
+            expected_wallet=config.SERVICE_WALLET,
+            expected_price=quoted_price,
+            min_confirmations=config.MIN_CONFIRMATIONS
+        )
+        
+        print(f"✓ Payment verified: {payment_details.value} wei from {payment_details.from_address}")
+         except PaymentVerificationError as e:
+        raise HTTPException(
+            status_code=402,  # Payment Required
+            detail=f"Payment verification failed: {e}"
+        )
+```
+
