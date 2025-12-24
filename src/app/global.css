@@ -76,7 +76,7 @@
 }
 
 body {
-  background: #0d1117 !important;
+  background: #020108 !important;
   color: #c9d1d9 !important;
 }
 
@@ -84,7 +84,7 @@ body {
 html,
 body,
 #__next {
-  background-color: #0d1117 !important;
+  background-color: #020108 !important;
 }
 
 /* Make layout containers transparent to show cosmic background */
@@ -103,10 +103,20 @@ nav.fd-nav {
   background-color: #ff00ff !important;
   backdrop-filter: blur(12px) saturate(180%) !important;
   -webkit-backdrop-filter: blur(12px) saturate(180%) !important;
-  border-right: 1px solid rgba(139, 92, 246, 0.3) !important;
-  box-shadow: 0 0 40px rgba(139, 92, 246, 0.1) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.05) !important;
   position: relative !important;
   z-index: 100 !important;
+}
+
+/* Directly target Fumadocs sidebar element */
+#nd-sidebar,
+[data-sidebar-placeholder] > #nd-sidebar,
+[data-sidebar-panel] #nd-sidebar {
+  background: #020108 !important;
+  background-color: #020108 !important;
+  backdrop-filter: blur(12px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(180%) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.05) !important;
 }
 
 /* Only apply background when sidebar is visible - remove from 'aside' globally */
@@ -146,23 +156,16 @@ aside[data-sidebar][aria-hidden="true"] {
 
 [data-sidebar] a:hover,
 .fd-sidebar a:hover {
-  color: #8b5cf6 !important;
-  background: rgba(139, 92, 246, 0.1) !important;
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.1) !important;
 }
 
 [data-sidebar] a[data-active="true"],
 [data-sidebar] a[aria-current="page"],
 .fd-sidebar a[data-active="true"] {
-  color: #8b5cf6 !important;
-  background: rgba(139, 92, 246, 0.15) !important;
-  border-left: 2px solid #8b5cf6 !important;
-}
-
-/* Sidebar brand/title */
-#nd-sidebar a[href="/"],
-#nd-sidebar a[href="/"]:hover,
-.fd-sidebar a[data-sidebar-title] {
   color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-left: 2px solid #ffffff !important;
 }
 
 /* Main content area - transparent */
@@ -175,23 +178,27 @@ article,
 /* Cards and panels */
 .nd-card {
   background: rgba(255, 255, 255, 0.05) !important;
-  border: 1px solid rgba(139, 92, 246, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
   backdrop-filter: blur(10px);
+}
+
+.bg-fd-card {
+  background-color: #020108 !important;
 }
 
 /* Code blocks */
 pre {
   background: rgba(0, 0, 0, 0.3) !important;
-  border: 1px solid rgba(139, 92, 246, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Links */
 a {
-  color: #8b5cf6;
+  color: #ffffff;
 }
 
 a:hover {
-  color: #a78bfa;
+  color: #e5e7eb;
 }
 
 /* Headings */
@@ -209,14 +216,14 @@ button[aria-label*="Toggle theme" i],
 
 /* Search bar */
 [data-search-toggle] {
-  background: rgba(139, 92, 246, 0.1);
-  border: 1px solid rgba(139, 92, 246, 0.3);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: #c9d1d9;
 }
 
 [data-search-toggle]:hover {
-  background: rgba(139, 92, 246, 0.2);
-  border-color: #8b5cf6;
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #ffffff;
 }
 
 /* TOC (Table of Contents) */
@@ -230,7 +237,7 @@ button[aria-label*="Toggle theme" i],
 
 [data-toc] a:hover,
 [data-toc] a[data-active="true"] {
-  color: #8b5cf6;
+  color: #ffffff;
 }
 
 /* Scrollbar styling */
@@ -240,7 +247,7 @@ button[aria-label*="Toggle theme" i],
 }
 
 ::-webkit-scrollbar-track {
-  background: #0d1117;
+  background: #020108;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -252,19 +259,18 @@ button[aria-label*="Toggle theme" i],
   background: rgba(139, 92, 246, 0.5);
 }
 
-/* Hero Background - Cosmic Purple Effect */
+/* Hero Background - Complex pseudo-elements with gradients and animations */
 :root {
-  --purple: 139, 92, 246;
-  --blue: 96, 165, 250;
-  --pink: 244, 114, 182;
+  --purple: 168, 85, 247;
 }
 
 /* Apply background to docs layout container */
 [data-docs-layout],
 .fd-layout,
 body {
-  background: #0d1117 !important;
+  background: #020108 !important;
   position: relative;
+  z-index: 0;
 }
 
 /* Background glow layers - behind everything */
@@ -272,50 +278,68 @@ body {
 body::before {
   content: '';
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background:
-    radial-gradient(ellipse 100% 80% at 30% 40%, rgba(var(--purple), 0.15), transparent 50%),
-    radial-gradient(ellipse 80% 100% at 70% 60%, rgba(var(--blue), 0.1), transparent 50%),
-    radial-gradient(circle at 50% 80%, rgba(var(--pink), 0.08), transparent 40%),
-    linear-gradient(to bottom, #0d1117 20%, transparent 60%, rgba(var(--purple), 0.05) 100%);
-  z-index: 0;
+    /* A general dark to light from top to bottom */
+    linear-gradient(to bottom, #020108 30%, transparent 70%),
+    /* Glows for where the cards are roughly. These are positioned to be behind the 3-column grid */
+    radial-gradient(ellipse 40% 30% at 25% 90%, rgba(var(--purple), 0.12), transparent),
+    radial-gradient(ellipse 40% 30% at 50% 85%, rgba(var(--purple), 0.15), transparent),
+    radial-gradient(ellipse 40% 30% at 75% 90%, rgba(var(--purple), 0.12), transparent);
+  z-index: -30;
   pointer-events: none;
 }
 
-/* Starfield layer */
+/* Star field with parallax effect */
 [data-docs-layout]::after,
 body::after {
   content: '';
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-image:
-    radial-gradient(0.5px 0.5px at 12% 18%, rgba(255,255,255,0.9), transparent),
-    radial-gradient(0.5px 0.5px at 45% 32%, rgba(255,255,255,0.8), transparent),
-    radial-gradient(0.5px 0.5px at 78% 67%, rgba(255,255,255,0.9), transparent),
-    radial-gradient(0.5px 0.5px at 23% 89%, rgba(255,255,255,0.7), transparent),
-    radial-gradient(0.5px 0.5px at 91% 24%, rgba(255,255,255,0.85), transparent),
-    radial-gradient(0.5px 0.5px at 34% 71%, rgba(255,255,255,0.8), transparent),
-    radial-gradient(1px 1px at 29% 91%, rgba(var(--blue), 1), transparent),
-    radial-gradient(1px 1px at 88% 43%, white, transparent),
-    radial-gradient(1px 1px at 56% 12%, rgba(var(--pink), 0.9), transparent),
-    radial-gradient(1.5px 1.5px at 41% 55%, white, transparent 2px),
-    radial-gradient(1.5px 1.5px at 82% 19%, rgba(var(--blue), 1), transparent 2px);
+    /* Layer 1: smaller, slower stars */
+    radial-gradient(0.5px 0.5px at 10% 30%, white, transparent),
+    radial-gradient(0.5px 0.5px at 40% 60%, white, transparent),
+    radial-gradient(0.5px 0.5px at 80% 20%, white, transparent),
+    radial-gradient(0.5px 0.5px at 5% 80%, white, transparent),
+    radial-gradient(0.5px 0.5px at 95% 50%, white, transparent),
+    radial-gradient(0.5px 0.5px at 50% 10%, white, transparent),
+    radial-gradient(0.5px 0.5px at 20% 95%, white, transparent),
+    /* Layer 2: larger, faster stars */
+    radial-gradient(1px 1px at 25% 80%, white, transparent),
+    radial-gradient(1px 1px at 60% 40%, white, transparent),
+    radial-gradient(1px 1px at 90% 70%, white, transparent),
+    radial-gradient(1px 1px at 15% 5%, white, transparent),
+    radial-gradient(1px 1px at 70% 95%, white, transparent);
   background-repeat: repeat;
-  background-size: 500px 500px, 700px 700px;
-  opacity: 0.8;
-  animation: move-stars 200s linear infinite, twinkle 3s ease-in-out infinite alternate;
+  background-size: 400px 400px, 600px 600px;
+  opacity: 0.7;
   pointer-events: none;
-  z-index: 0;
+  z-index: -30;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-docs-layout]::after,
+  body::after {
+    animation: move-stars 150s linear infinite;
+    will-change: background-position;
+    transform: translateZ(0);
+  }
 }
 
 @keyframes move-stars {
-  from { background-position: 0 0; }
-  to { background-position: -1000px 1000px; }
-}
-
-@keyframes twinkle {
-  0%, 100% { opacity: 0.8; }
-  50% { opacity: 0.5; }
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -1000px 1000px;
+  }
 }
 
 /* Ensure all content layers are above background */
@@ -338,7 +362,7 @@ nav.fd-sidebar-nav,
   background-color: #ff00ff !important;
   backdrop-filter: blur(12px) saturate(180%) !important;
   -webkit-backdrop-filter: blur(12px) saturate(180%) !important;
-  border-right: 1px solid rgba(139, 92, 246, 0.3) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.05) !important;
   position: relative !important;
   z-index: 100 !important;
 }
