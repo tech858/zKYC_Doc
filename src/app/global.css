@@ -1,3 +1,363 @@
 @import 'tailwindcss';
 @import 'fumadocs-ui/css/neutral.css';
 @import 'fumadocs-ui/css/preset.css';
+
+/* Force dark mode and override Fumadocs variables */
+:root,
+.dark,
+[data-theme='dark'] {
+  color-scheme: dark;
+  
+  /* Fumadocs specific variables - dark background */
+  --fd-background: 220 33% 7%; /* #0d1117 */
+  --fd-foreground: 210 18% 83%; /* #c9d1d9 */
+  
+  /* Purple primary accent */
+  --fd-primary: 258 90% 66%; /* #8b5cf6 */
+  --fd-primary-foreground: 255 255 255;
+  
+  /* Secondary colors */
+  --fd-secondary: 220 17% 18%;
+  --fd-secondary-foreground: 210 18% 83%;
+  
+  /* Muted colors */
+  --fd-muted: 220 15% 20%;
+  --fd-muted-foreground: 210 10% 68%;
+  
+  /* Accent colors - purple */
+  --fd-accent: 258 90% 66%;
+  --fd-accent-foreground: 0 0% 100%;
+  
+  /* Card colors */
+  --fd-card: 215 32% 10%;
+  --fd-card-foreground: 201 209 217;
+  
+  /* Popover colors */
+  --fd-popover: 220 13% 10%;
+  --fd-popover-foreground: 201 209 217;
+  
+  /* Border and ring */
+  --fd-border: 220 13% 18%;
+  --fd-ring: 258 90% 66%;
+  
+  /* Standard CSS variables */
+  --background: 220 33% 7%;
+  --foreground: 210 18% 83%;
+  --primary: 258 90% 66%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 220 17% 18%;
+  --secondary-foreground: 210 18% 83%;
+  --muted: 220 15% 20%;
+  --muted-foreground: 210 10% 68%;
+  --accent: 258 90% 66%;
+  --accent-foreground: 0 0% 100%;
+  --card: 215 32% 10%;
+  --card-foreground: 210 18% 83%;
+  --popover: 220 25% 10%;
+  --popover-foreground: 210 18% 83%;
+  --border: 220 24% 20%;
+  --ring: 258 90% 66%;
+  
+  --radius: 0.75rem;
+}
+
+/* Disable light mode */
+.light,
+[data-theme='light'] {
+  color-scheme: dark;
+  
+  --fd-background: 13 17 23;
+  --fd-foreground: 201 209 217;
+  --fd-primary: 258 90% 66%;
+  --fd-primary-foreground: 255 255 255;
+  --background: 13 17 23;
+  --foreground: 201 209 217;
+  --primary: 258 90% 66%;
+}
+
+body {
+  background: #0d1117 !important;
+  color: #c9d1d9 !important;
+}
+
+/* Force dark background on base elements only */
+html,
+body,
+#__next {
+  background-color: #0d1117 !important;
+}
+
+/* Make layout containers transparent to show cosmic background */
+main,
+.fd-layout,
+[data-docs-layout] {
+  background-color: transparent !important;
+}
+
+/* Sidebar styling with purple accent and semi-transparent dark background */
+aside[data-sidebar],
+nav[data-sidebar],
+.fd-sidebar,
+nav.fd-nav {
+  background: #ff00ff !important; /* BRIGHT MAGENTA FOR TESTING */
+  background-color: #ff00ff !important;
+  backdrop-filter: blur(12px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(180%) !important;
+  border-right: 1px solid rgba(139, 92, 246, 0.3) !important;
+  box-shadow: 0 0 40px rgba(139, 92, 246, 0.1) !important;
+  position: relative !important;
+  z-index: 100 !important;
+}
+
+/* Only apply background when sidebar is visible - remove from 'aside' globally */
+aside:not([data-sidebar]) {
+  background: transparent !important;
+}
+
+/* Remove duplicate - ensure no background on non-sidebar aside elements */
+[data-docs-layout] > aside:not([data-sidebar]),
+.fd-layout > aside:not([data-sidebar]),
+aside:not([data-sidebar]):not(.fd-sidebar) {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Hide sidebar container when sidebar is closed */
+[data-sidebar-container][data-open="false"],
+[data-sidebar][data-open="false"],
+aside[data-sidebar][aria-hidden="true"] {
+  display: none !important;
+}
+
+/* Sidebar placeholder/backdrop should be transparent */
+[data-sidebar-backdrop],
+.fd-sidebar-backdrop {
+  background: transparent !important;
+}
+
+/* Sidebar links */
+[data-sidebar] a,
+.fd-sidebar a {
+  color: #c9d1d9 !important;
+  transition: all 0.2s ease;
+}
+
+[data-sidebar] a:hover,
+.fd-sidebar a:hover {
+  color: #8b5cf6 !important;
+  background: rgba(139, 92, 246, 0.1) !important;
+}
+
+[data-sidebar] a[data-active="true"],
+[data-sidebar] a[aria-current="page"],
+.fd-sidebar a[data-active="true"] {
+  color: #8b5cf6 !important;
+  background: rgba(139, 92, 246, 0.15) !important;
+  border-left: 2px solid #8b5cf6 !important;
+}
+
+/* Sidebar brand/title */
+#nd-sidebar a[href="/"],
+#nd-sidebar a[href="/"]:hover,
+.fd-sidebar a[data-sidebar-title] {
+  color: #ffffff !important;
+}
+
+/* Main content area - transparent */
+article,
+.fd-content {
+  background: transparent !important;
+  color: #c9d1d9 !important;
+}
+
+/* Cards and panels */
+.nd-card {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(139, 92, 246, 0.2) !important;
+  backdrop-filter: blur(10px);
+}
+
+/* Code blocks */
+pre {
+  background: rgba(0, 0, 0, 0.3) !important;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+/* Links */
+a {
+  color: #8b5cf6;
+}
+
+a:hover {
+  color: #a78bfa;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  color: #c9d1d9;
+}
+
+/* Hide theme toggle button */
+button[aria-label*="theme" i],
+button[aria-label*="Toggle theme" i],
+[data-theme-toggle],
+.fd-theme-toggle {
+  display: none !important;
+}
+
+/* Search bar */
+[data-search-toggle] {
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  color: #c9d1d9;
+}
+
+[data-search-toggle]:hover {
+  background: rgba(139, 92, 246, 0.2);
+  border-color: #8b5cf6;
+}
+
+/* TOC (Table of Contents) */
+[data-toc] {
+  background: transparent;
+}
+
+[data-toc] a {
+  color: #8a939b;
+}
+
+[data-toc] a:hover,
+[data-toc] a[data-active="true"] {
+  color: #8b5cf6;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0d1117;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 246, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 92, 246, 0.5);
+}
+
+/* Hero Background - Cosmic Purple Effect */
+:root {
+  --purple: 139, 92, 246;
+  --blue: 96, 165, 250;
+  --pink: 244, 114, 182;
+}
+
+/* Apply background to docs layout container */
+[data-docs-layout],
+.fd-layout,
+body {
+  background: #0d1117 !important;
+  position: relative;
+}
+
+/* Background glow layers - behind everything */
+[data-docs-layout]::before,
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 100% 80% at 30% 40%, rgba(var(--purple), 0.15), transparent 50%),
+    radial-gradient(ellipse 80% 100% at 70% 60%, rgba(var(--blue), 0.1), transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(var(--pink), 0.08), transparent 40%),
+    linear-gradient(to bottom, #0d1117 20%, transparent 60%, rgba(var(--purple), 0.05) 100%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Starfield layer */
+[data-docs-layout]::after,
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(0.5px 0.5px at 12% 18%, rgba(255,255,255,0.9), transparent),
+    radial-gradient(0.5px 0.5px at 45% 32%, rgba(255,255,255,0.8), transparent),
+    radial-gradient(0.5px 0.5px at 78% 67%, rgba(255,255,255,0.9), transparent),
+    radial-gradient(0.5px 0.5px at 23% 89%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(0.5px 0.5px at 91% 24%, rgba(255,255,255,0.85), transparent),
+    radial-gradient(0.5px 0.5px at 34% 71%, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 29% 91%, rgba(var(--blue), 1), transparent),
+    radial-gradient(1px 1px at 88% 43%, white, transparent),
+    radial-gradient(1px 1px at 56% 12%, rgba(var(--pink), 0.9), transparent),
+    radial-gradient(1.5px 1.5px at 41% 55%, white, transparent 2px),
+    radial-gradient(1.5px 1.5px at 82% 19%, rgba(var(--blue), 1), transparent 2px);
+  background-repeat: repeat;
+  background-size: 500px 500px, 700px 700px;
+  opacity: 0.8;
+  animation: move-stars 200s linear infinite, twinkle 3s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes move-stars {
+  from { background-position: 0 0; }
+  to { background-position: -1000px 1000px; }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 0.5; }
+}
+
+/* Ensure all content layers are above background */
+.fd-sidebar,
+main,
+article,
+.fd-content,
+nav,
+header {
+  position: relative;
+  z-index: 1;
+}
+
+/* Override: Sidebar with solid background - Nuclear option */
+aside[data-sidebar],
+.fd-sidebar,
+nav.fd-sidebar-nav,
+[data-sidebar="sidebar"] {
+  background: #ff00ff !important; /* BRIGHT MAGENTA FOR TESTING */
+  background-color: #ff00ff !important;
+  backdrop-filter: blur(12px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(180%) !important;
+  border-right: 1px solid rgba(139, 92, 246, 0.3) !important;
+  position: relative !important;
+  z-index: 100 !important;
+}
+
+/* Make sure sidebar inner content also has background */
+aside[data-sidebar] > *,
+.fd-sidebar > *,
+aside[data-sidebar] *,
+.fd-sidebar * {
+  position: relative;
+  z-index: 101;
+}
+
+/* Ensure containers and generic asides are transparent */
+[data-sidebar-container],
+div[class*="sidebar-container"],
+div[class*="sidebar"][class*="wrapper"] {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
