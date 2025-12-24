@@ -7,6 +7,7 @@ interface CopyCodeProps {
   label?: string;
 }
 
+
 export default function CopyCode({ code, label = "Code snippet" }: CopyCodeProps) {
   const [copied, setCopied] = useState(false);
 
