@@ -4,9 +4,38 @@ title: Use Cases
 import Link from 'next/link';
 
 
-### 1. Privacy-Preserving Identity Verification
-A decentralized lending platform wants to allow users to apply for loans without exposing sensitive information like government ID numbers or full addresses. Using zKYC, the platform can verify that each applicant is a real human and eligible for the service. The zero-knowledge protocols confirm the identity without revealing any personal data, so even if the platform is breached, users’ private information remains safe.
-### 2. On-Chain Proof Commitment
-A blockchain-based voting system wants to ensure that only verified voters can cast votes while keeping their identities confidential. Each voter connects their wallet to zKYC, which stores a cryptographic hash of their verified identity as a commitment on the Aptos blockchain. When voting, the system verifies this commitment, confirming eligibility without ever seeing the voter’s personal details.
-### 2. On-Chain Proof Commitment
-An AI trading bot needs to autonomously interact with a decentralized exchange. zKYC issues the bot a verifiable credential using blockchain standards (ERC8004/X402). The bot can now authenticate itself and execute trades on-chain without human intervention, and other platforms can verify the bot’s credentials to trust that it is authorized and verified, all in a secure and standardized way.
+zKYC isn't just backend infrastructure; it's here to solve a feeling you already know well: that small moment of hesitation every time someone online asks you to "prove who you are."
+
+You want access. You want to play, trade, vote, build. But you don't want to hand your passport, face, and address to platforms you barely know and hope they never get hacked. zKYC exists exactly for that gap between what you want to do and what you are forced to give up.
+
+### For Gamers: Join In Without Doxxing Yourself
+Imagine you are about to join a high-stakes tournament or claim a rare in-game asset. The only thing between you and the match is a KYC form asking for your ID, selfies, maybe even a utility bill.
+
+You pause. Not because you don't want to play, but because you don't want yet another copy of your life sitting in another database.
+
+With zKYC, you verify once in a private way. Out of that, you get a proof that simply says: this is a real, unique person, old enough, not a bot. The game server never sees your real name, your address, or your documents. You still get to queue, compete, and win – but your identity stays yours.
+
+### For DeFi Users: Serious Access Without Exposing Everything
+If you use DeFi seriously, you have probably run into platforms that ask you to upload documents just to deposit or earn yield. Maybe you walked away. Maybe you went through with it and felt uneasy.
+
+The question in your head is simple: why does every single protocol need a copy of my ID to know I am allowed to use it?
+
+With zKYC, you go through verification once. Behind the scenes, zKYC anchors a cryptographic commitment on-chain. When you connect your wallet to a compliant DeFi pool or RWA platform, you do not resend your documents. You present a proof. The protocol learns what it needs to know about you for compliance – not who you are in the real world.
+
+If one app is breached, there is no pile of your personal documents waiting to be leaked. The proof lives with you.
+
+### For AI Builders: Agents People Can Actually Trust
+Maybe you are not just a user; you are building. You are creating an AI agent that should trade, route payments, or act as an on-chain assistant.
+
+You want that agent to act independently, but you also want people to trust that it is legitimate and constrained. You do not want to hard-code your own private keys into a script just so it can move on-chain.
+
+zKYC lets you give your agent its own verifiable credentials. The agent has an on-chain identity that can be checked by smart contracts and platforms. It can act, sign, and transact within clear limits, while your personal identity and keys stay separate. People can see that the agent is authorized – without seeing you.
+
+### For Communities and DAOs: A Fair Voice Without Giving Up Privacy
+If you have ever joined a DAO or online community, you know how fragile "fairness" can be. A few whales, a few sock-puppet accounts, and voting stops feeling like a community decision.
+
+You might want one person, one voice – but you do not want to upload passports to a DAO just to prove you are real.
+
+With zKYC, you can prove you are a unique human being and get a vote or role based on that, not just on the tokens you hold. The DAO can defend itself against fake accounts and spam without ever seeing your underlying identity.
+
+You participate fully. You keep your privacy. And you no longer have to choose between being safe and being included.

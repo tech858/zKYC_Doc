@@ -3,6 +3,7 @@ title: KYC sdk
 description: zKYC is a service package that redirects users to the zKYC page, where they go through a KYC verification process.  
 ---
 import { Step, Steps } from 'fumadocs-ui/components/steps';
+import { GithubIcon, ExternalLinkIcon } from '../../_components/icons';
 
 Before integrating the sdk in your end you will need to register in [zKYC](https://app.zkyc.tech "title") then generate your private key. 
 <Steps>
@@ -27,9 +28,9 @@ export default function KYCButton() {
   const handleKYC = async () => {
     try {
       await ZKYCProcess({
-        apiKey: "prod_bdhZewRkyHQpWNSHmDIMwwLgxOMuAXupzJivNMUONARXKhIWcLQGgiATjRIzpRNB",
-        failurePage: `${window.location.origin}/kyc-failed`,
-        pendingPage: `${window.location.origin}/kyc-pending`,
+        apiKey: "prod_***********************************", //either production or testing key 
+        failurePage: `${window.location.origin}/kyc-failed`, //In case of failure, you will be redirected to this page
+        successPage: `${window.location.origin}/kyc-success`, // In case of success, you will be redirected to this page
       });
     } catch (error) {
       console.error('KYC initiation failed:', error);
@@ -67,6 +68,16 @@ console.log("Verification data", result);
 | :--- | :--- |
 | **apiKey** | Your API key (test or production). |
 | **failurePage** | URL to redirect the user if verification fails. |
-| **pendingPage** | URL to redirect the user when verification is pending or complete. |
+| **successPage** | URL to redirect the user when verification is completed and the proof is claimed by the user. |
 
-## [Check our demo project](https://github.com/tech858/aws_zkyc_test "title")
+### Check our repo in github
+
+<a href="https://github.com/tech858/aws_zkyc_test" target="_blank" rel="noreferrer">
+  <GithubIcon className="w-6 h-6" />
+</a>
+
+### Check our demo
+
+<a href="https://demo.zkyc.tech" target="_blank" rel="noreferrer">
+  <ExternalLinkIcon className="w-6 h-6" />
+</a>
