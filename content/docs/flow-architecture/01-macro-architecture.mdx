@@ -10,10 +10,13 @@ description: A high-level look at how all zKYC services will operate.
 ## End-to-end lifecycle
 
 1. User starts verification in the secure zKYC environment.
-2. zKYC performs document + facematch + liveness checks.
-3. A reusable proof linked to the users identity is issued to the user and only the user.
-4. The proof is hashed and stored so that the users can verify their identity without the need for a new KYC submition.
-5. After the proof is collected the user is redirect to the success page created by the zKYC clients.
+2. User is redirected to the zKYC webpage
+3. zKYC performs document + facematch + liveness checks the it is submitted to our backend.
+4. zKYC back-end return the response of the submition that could valid or invalid.
+5. If the KYC response is invalid user is redirected to the failure page.
+6. If the KYC response is valid the zKpass proof is generated and given to the user.
+7. The proof is hashed and stored off-chain.
+8. The zKYC process is complete and the user redirected to the success page.
 
 ### zKPass Proofs
 
@@ -39,10 +42,15 @@ This means you can prove compliance and trustworthiness without exposing user da
 <div >
   ![zKYC Macro Architecture](/images/Diagrams/aptos_diagram.png)
 </div>
+
 ## End-to-end lifecycle
 
 1. User starts verification in the secure zKYC environment.
-2. zKYC performs document + facematch + liveness checks.
+2. User is redirected to the zKYC webpage
 3. User connect their wallet to zKYC platform.
-4. A reusable proof linked to the users identity is issued to the user and only the user.
-5. The proof is hashed and stored off-chain and on-chain in the Aptos blockchain.
+4. zKYC performs document + facematch + liveness checks the it is submitted to our backend.
+5. zKYC back-end return the response of the submition that could valid or invalid.
+6. If the KYC response is invalid user is redirected to the failure page.
+7. If the KYC response is valid the zKpass proof is generated and given to the user.
+8. The proof is hashed and stored off-chain and on-chain in the Aptos blockchain.
+9. The zKYC process is complete and the user redirected to the success page.

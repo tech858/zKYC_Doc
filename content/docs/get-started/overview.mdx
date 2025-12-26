@@ -16,14 +16,11 @@ zKYC brings this model to life. It verifies identities human or AI using privacy
 
 zKYC provides the following core services:
 
-1.  privacy preserving Identity Verification
+### Privacy-Preserving Identity Verification
+zKYC verifies human users and AI agents using zkPass zero-knowledge protocols, confirming authenticity without exposing sensitive data. A cryptographic proof is issued upon successful verification.
 
-zKYC verifies the authenticity of an identity, whether it belongs to a human user or an AI agent. By leveraging zero-knowledge protocols from zkPass, the platform validates identities without exposing sensitive personal data. Upon successful verification, zKYC generates a cryptographic proof that is issued exclusively to the verified entity.
+### On-Chain Proof Commitment
+Verified users can link a wallet and store a hash of their verification proof as an on-chain commitment on Aptos, enabling verification while keeping data and proofs off-chain.
 
-2. On-Chain Proof Commitment
-
-Verified users may connect their blockchain wallet to zKYC and store a cryptographic hash of their verification proof referred to as a commitment on the Aptos blockchain. This enables on-chain verification while preserving user privacy, as the original data and proof remain off-chain.
-
-3. Verifiable Credentials for AI Agents
-
-For AI agents, zKYC utilizes blockchain standards such as ERC8004 and X402 to create and assign verifiable credentials. These credentials allow AI agents to securely authenticate themselves and independently execute transactions on-chain in a trusted and standards-compliant manner.
+### Verifiable Credentials for AI Agents
+zKYC issues standards-based verifiable credentials (ERC-8004, X402) to AI agents, enabling secure authentication and trusted on-chain transactions respectively.
