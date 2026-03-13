@@ -1,17 +1,14 @@
 "use client";
 
 const PROMPTS: Record<string, string> = {
-  kyc: `I'm reading the zKYC SDK integration documentation. Here's a summary of the page:
+  kyc: `Build me a complete working Next.js app example that integrates the zKYC SDK.
 
-zKYC is a service package that redirects users through a KYC (Know Your Customer) verification flow.
+**Package:** npm i zkyc-sdk-package@latest
 
-**Installation:**
-npm i zkyc-sdk-package@latest
-
-**Usage:**
+**SDK usage:**
 import { ZKYCProcess } from "zkyc-sdk-package";
 await ZKYCProcess({
-  apiKey: "prod_***",           // production or test key
+  apiKey: "prod_***",
   failurePage: "https://yourapp.com/kyc-failed",
   successPage: "https://yourapp.com/kyc-success",
 });
@@ -21,23 +18,17 @@ GET https://sdk.zkyc.tech/api/kyc/verifications/{ApplicantId}
 Header: x-api-key: <your key>
 Response status values: pending | valid | invalid
 
-**Required parameters:** apiKey, failurePage, successPage
+Please generate a full app with:
+1. A page with a "Start KYC" button that calls ZKYCProcess
+2. A /kyc-success page that calls the status API and shows the verification result
+3. A /kyc-failed page with a retry option
+Include all files, imports, and a brief setup guide.`,
 
-Can you help me understand how to integrate this into my application?`,
+  aptos: `Build me a complete working Next.js + Aptos wallet app example that integrates zKYC.
 
-  aptos: `I'm reading the zKYC Aptos Integration documentation. Here's a summary of the page:
+**Package:** npm i zkyc-aptos-package@latest
 
-zKYC allows users to verify their identity and sign a commitment on the Aptos blockchain (web3).
-
-**Prerequisites:**
-- Node.js 18+
-- A zKYC account (app.zkyc.tech)
-- An API key (test key is fine to start)
-
-**Installation:**
-npm i zkyc-aptos-package@latest
-
-**Trigger Verification (ZKYCProcess):**
+**Trigger verification:**
 import { ZKYCProcess } from "zkyc-sdk-package";
 await ZKYCProcess({
   apiKey: "test_your_key_here",
@@ -46,24 +37,22 @@ await ZKYCProcess({
 });
 
 **Notes:**
-- Use a test_ prefixed key during development (sandboxed, no charges)
-- Switch to a prod_ key for production (requires $100 minimum deposit)
-
-**After verification:**
-- The user receives a proof as a code string at the end of the KYC process
-- The proof can optionally be anchored on Aptos if the user connected a wallet
+- test_ key = sandboxed (no charges); prod_ key = production
+- After KYC the user gets a proof string that can be anchored on Aptos if a wallet is connected
 - The proof is valid until the underlying document expires
 
-Can you help me understand how to integrate zKYC with an Aptos web3 application?`,
+Please generate a full app with:
+1. Aptos wallet connect button (use @aptos-labs/wallet-adapter-react)
+2. "Verify Identity" button that triggers ZKYCProcess
+3. A success page that displays the proof and lets the user anchor it on-chain
+4. A failed page with retry
+Include all files, imports, Move snippet if needed, and a brief setup guide.`,
 
-  python: `I'm reading the zKYC Python SDK documentation. Here's a summary of the page:
+  python: `Build me a complete working Python example with two scripts — a seller agent and a buyer agent — using the zKYC Python SDK.
 
-The zKYC Python SDK lets you build AI agents that participate in the zKYC agent marketplace. A seller agent registers services and earns USDC. A buyer agent discovers sellers, pays in USDC, and receives results.
+**Package:** pip install zkyc-agent
 
-**Installation:**
-pip install zkyc-agent
-
-**Configuration (ZKYCConfig):**
+**Config:**
 from zkyc import ZKYCConfig
 config = ZKYCConfig(
     agent_id="YOUR_AGENT_ID",
@@ -74,17 +63,15 @@ config = ZKYCConfig(
     reputation_address="0xYOUR_REPUTATION",
 )
 
-**Seller agent:** registers handlers with @seller.on_request("action") and calls seller.listen() to poll for jobs. Payment is verified on-chain before executing the task.
+**Seller:** @seller.on_request("action") decorator + seller.listen()
+**Buyer:** buyer.find_agent(action, min_rating) → buyer.call(seller, params) → buyer.wait_for_result(job) → buyer.rate(job)
 
-**Buyer agent:** calls buyer.find_agent(action, min_rating), then buyer.call(seller, params) to pay and open a job, buyer.wait_for_result(job) to get the result, and buyer.rate(job) to submit an on-chain reputation rating.
-
-**Key features:**
-- Input schema validation before payment (prevents paying for rejected jobs)
-- On-chain USDC payment between agents
-- Immutable on-chain reputation ratings
-- Crash recovery via tx_hash
-
-Can you help me understand how to build a buyer or seller agent using this SDK?`,
+Please generate:
+1. seller.py — a seller agent that registers a "verify_identity" action and returns a mock KYC result
+2. buyer.py — a buyer agent that finds the seller, pays, and prints the result
+3. .env.example with all required variables
+4. A brief setup and run guide
+Include full working code with error handling and comments.`,
 };
 
 interface AskAIProps {
