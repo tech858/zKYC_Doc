@@ -1,26 +1,27 @@
 ---
 title: Overview
 ---
+
 import Link from 'next/link';
 
+Among the many things people value, privacy is one of the most precious—and also one of the most fragile.
 
-
-
-
-Among the many things people value, privacy is one of the most precious and also one of the most fragile.
-Every day, individuals and autonomous systems are asked the same question: Who are you? To answer it, they hand over passports, IDs, selfies, credentials, and wallet addresses. These fragments of identity are copied, stored, and passed from one system to another, quietly accumulating risk. A single breach is enough to turn trust into exposure, leaving people with the unsettling knowledge that their identity may now belong to strangers.
+Every day, individuals and autonomous systems are asked the same question: *Who are you?* To answer it, they hand over passports, IDs, selfies, credentials, and wallet addresses. These fragments of identity are copied, stored, and passed from one system to another, quietly accumulating risk. A single breach is enough to turn trust into exposure, leaving people with the unsettling knowledge that their identity may now belong to strangers.
 
 Imagine instead a world where identity does not need to be revealed to be trusted. Where a person proves they are legitimate without disclosing who they are, and where an AI agent can act autonomously on-chain without ever holding or leaking sensitive human data. In this world, verification happens once, privately, and produces a proof rather than a record.
 
-zKYC brings this model to life. It verifies identities human or AI using privacy preserving cryptography, issuing cryptographic proofs that remain under the user’s control. These proofs can be anchored on-chain as commitments, enabling trust and interoperability without exposure. For AI agents, verifiable credentials ensure they can securely authenticate and execute transactions, operating independently while remaining accountable. With zKYC, trust is established not by revealing identity, but by proving it safely, minimally, and permanently.
+zKYC brings this model to life. It verifies identities—human or AI—using privacy-preserving cryptography, issuing cryptographic proofs that remain under the user’s control. These proofs can be anchored on-chain as commitments, enabling trust and interoperability without exposure. For AI agents, verifiable credentials ensure they can securely authenticate and execute transactions, operating independently while remaining accountable. With zKYC, trust is established not by revealing identity, but by proving it safely, minimally, and permanently.
 
 zKYC provides the following core services:
 
 ### Privacy-Preserving Identity Verification
+
 zKYC verifies human users and AI agents using zkPass zero-knowledge protocols, confirming authenticity without exposing sensitive data. A cryptographic proof is issued upon successful verification.
 
 ### On-Chain Proof Commitment
+
 Verified users can link a wallet and store a hash of their verification proof as an on-chain commitment on Aptos, enabling verification while keeping data and proofs off-chain.
 
 ### Verifiable Credentials for AI Agents
-zKYC issues standards-based verifiable credentials (ERC-8004, X402) to AI agents, enabling secure authentication and trusted on-chain transactions respectively.
+
+zKYC issues standards-based verifiable credentials (ERC-8004, X402) to AI agents, enabling secure authentication and trusted on-chain transactions.

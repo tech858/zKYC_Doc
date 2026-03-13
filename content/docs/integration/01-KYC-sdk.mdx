@@ -1,15 +1,20 @@
+give me the ---
+title: KYC SDK
+description: zKYC is a service package that redirects users to the zKYC page, where they go through a KYC verification process.
 ---
-title: KYC sdk
-description: zKYC is a service package that redirects users to the zKYC page, where they go through a KYC verification process.  
----
+
 import { Step, Steps } from 'fumadocs-ui/components/steps';
 import { GithubIcon, ExternalLinkIcon } from '../../_components/icons';
 
-Before integrating the sdk in your end you will need to register in [zKYC](https://app.zkyc.tech "title") then generate your private key. 
+Before integrating the SDK on your end, you will need to register on [zKYC](https://app.zkyc.tech "title") and then generate your private key.
+
 <Steps>
 <Step>
+
 ### Install
 Add the SDK to your application.
+
+
 
 ```bash
 npm i zkyc-sdk-package@latest
@@ -43,24 +48,8 @@ export default function KYCButton() {
 </Step>
 </Steps>
 
-## Check verification status (API)
 
-Fetch the verification status of your users via our API. Status values include: pending, valid, and invalid.
-```ts
-const res = await fetch(
-  `https://sdk.zkyc.tech/api/kyc/verifications/${ApplicantId}`,
-  {
-    method: "GET",
-    headers: {
-      "x-api-key": apiKey,
-    },
-  }
-);
 
-if (!res.ok) throw new Error(`HTTP error: ${res.status}`);
-const result = await res.json();
-console.log("Verification data", result);
-```
 
 ## Required parameters
 
@@ -81,3 +70,9 @@ console.log("Verification data", result);
 <a href="https://demo.zkyc.tech" target="_blank" rel="noreferrer">
   <ExternalLinkIcon className="w-6 h-6" />
 </a>
+
+### Ask an AI
+
+Have an AI explain this page or help you integrate the SDK.
+
+<AskAI />

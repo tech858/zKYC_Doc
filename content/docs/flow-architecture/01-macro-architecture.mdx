@@ -2,25 +2,28 @@
 title: Macro architecture
 description: A high-level look at how all zKYC services will operate.
 ---
+
 # zKYC identity verification
-<div >
+
+<div>
   ![zKYC Macro Architecture](/images/Diagrams/Diagram.png)
 </div>
 
 ## End-to-end lifecycle
 
 1. User starts verification in the secure zKYC environment.
-2. User is redirected to the zKYC webpage
-3. zKYC performs document + facematch + liveness checks the it is submitted to our backend.
-4. zKYC back-end return the response of the submition that could valid or invalid.
-5. If the KYC response is invalid user is redirected to the failure page.
-6. If the KYC response is valid the zKpass proof is generated and given to the user.
+2. User is redirected to the zKYC webpage.
+3. zKYC performs document, face match, and liveness checks, then submits the data to the backend.
+4. The zKYC backend returns the response of the submission, which can be valid or invalid.
+5. If the KYC response is invalid, the user is redirected to the failure page.
+6. If the KYC response is valid, the zKPass proof is generated and given to the user.
 7. The proof is hashed and stored off-chain.
-8. The zKYC process is complete and the user redirected to the success page.
+8. The zKYC process is complete, and the user is redirected to the success page.
 
 ### zKPass Proofs
 
 Proofs are small digital confirmations that show a verification was successful. They don’t contain personal documents or sensitive information. Instead, they act like a receipt that anyone can check to confirm the result.
+
 This means you can prove compliance and trustworthiness without exposing user data, keeping privacy fully protected.
 
 # zKYC AI agent transaction
@@ -31,26 +34,27 @@ This means you can prove compliance and trustworthiness without exposing user da
 
 ## End-to-end lifecycle
 
-1. AI agent select a service from the registered services in zKYC.
-2. After selecting a service the agent request the price from the service.
-3. Service send to the Ai agent the a proposal for a pricing.
-4. If the ai  approved the proposed quota then a handshake between agent and service is created.
-5. Agent proceed to payment in th blockchain.
-6. Service execute their payment responce.
+1. AI agent selects a service from the registered services in zKYC.
+2. After selecting a service, the agent requests the price from the service.
+3. The service sends a pricing proposal to the AI agent.
+4. If the AI approves the proposed quote, a handshake between the agent and the service is created.
+5. The agent proceeds to payment on the blockchain.
+6. The service executes their payment response.
 
 # zKYC identity commitment
-<div >
+
+<div>
   ![zKYC Macro Architecture](/images/Diagrams/aptos_diagram.png)
 </div>
 
 ## End-to-end lifecycle
 
 1. User starts verification in the secure zKYC environment.
-2. User is redirected to the zKYC webpage
-3. User connect their wallet to zKYC platform.
-4. zKYC performs document + facematch + liveness checks the it is submitted to our backend.
-5. zKYC back-end return the response of the submition that could valid or invalid.
-6. If the KYC response is invalid user is redirected to the failure page.
-7. If the KYC response is valid the zKpass proof is generated and given to the user.
-8. The proof is hashed and stored off-chain and on-chain in the Aptos blockchain.
-9. The zKYC process is complete and the user redirected to the success page.
+2. User is redirected to the zKYC webpage.
+3. User connects their wallet to the zKYC platform.
+4. zKYC performs document, face match, and liveness checks, then submits the data to the backend.
+5. The zKYC backend returns the response of the submission, which can be valid or invalid.
+6. If the KYC response is invalid, the user is redirected to the failure page.
+7. If the KYC response is valid, the zKPass proof is generated and given to the user.
+8. The proof is hashed and stored off-chain and on-chain on the Aptos blockchain.
+9. The zKYC process is complete, and the user is redirected to the success page.
