@@ -1,77 +1,85 @@
 "use client";
 
 const PROMPTS: Record<string, string> = {
-  kyc: `Build me a complete working Next.js app example that integrates the zKYC SDK.
+  kyc: `Vibe-code me a complete, runnable Next.js demo app where the user fills in the ZKYCProcess parameters directly in the UI and runs the flow live.
 
 **Package:** npm i zkyc-sdk-package@latest
 
-**SDK usage:**
+**SDK:**
 import { ZKYCProcess } from "zkyc-sdk-package";
-await ZKYCProcess({
-  apiKey: "prod_***",
-  failurePage: "https://yourapp.com/kyc-failed",
-  successPage: "https://yourapp.com/kyc-success",
-});
+await ZKYCProcess({ apiKey, failurePage, successPage });
 
-**Check verification status (GET API):**
+**Status check API:**
 GET https://sdk.zkyc.tech/api/kyc/verifications/{ApplicantId}
 Header: x-api-key: <your key>
-Response status values: pending | valid | invalid
+Response: { status: "pending" | "valid" | "invalid" }
 
-Please generate a full app with:
-1. A page with a "Start KYC" button that calls ZKYCProcess
-2. A /kyc-success page that calls the status API and shows the verification result
-3. A /kyc-failed page with a retry option
-Include all files, imports, and a brief setup guide.`,
+Build a full Next.js app with these pages:
 
-  aptos: `Build me a complete working Next.js + Aptos wallet app example that integrates zKYC.
+1. **Home page** — a styled demo form with three labeled inputs:
+   - API Key (type=password, placeholder "test_... or prod_...")
+   - Success URL (pre-filled with \`\${window.location.origin}/kyc-success\`)
+   - Failure URL (pre-filled with \`\${window.location.origin}/kyc-failed\`)
+   A "Start KYC Demo" button reads those inputs and calls \`ZKYCProcess({ apiKey, successPage, failurePage })\`. Store the apiKey in sessionStorage so the success page can use it.
 
-**Package:** npm i zkyc-aptos-package@latest
+2. **/kyc-success page** — reads ApplicantId from the URL query params, retrieves the apiKey from sessionStorage, calls the status API, and displays the verification result (status badge + raw JSON).
 
-**Trigger verification:**
+3. **/kyc-failed page** — shows a failure message and a "Try Again" button that goes back to home.
+
+Include all files, imports, TypeScript types, and a 3-step setup guide (install → paste your key → npm run dev).`,
+
+  aptos: `Vibe-code me a complete, runnable Next.js + Aptos wallet demo app where the user fills in the ZKYCProcess parameters in the UI and runs the flow live.
+
+**Package:** npm i zkyc-sdk-package@latest
+
+**SDK:**
 import { ZKYCProcess } from "zkyc-sdk-package";
-await ZKYCProcess({
-  apiKey: "test_your_key_here",
-  successPage: "https://yourapp.com/verification-success",
-  failurePage: "https://yourapp.com/verification-failed",
-});
+await ZKYCProcess({ apiKey, successPage, failurePage });
 
 **Notes:**
 - test_ key = sandboxed (no charges); prod_ key = production
-- After KYC the user gets a proof string that can be anchored on Aptos if a wallet is connected
+- After KYC the user receives a proof string that can be anchored on Aptos
 - The proof is valid until the underlying document expires
 
-Please generate a full app with:
-1. Aptos wallet connect button (use @aptos-labs/wallet-adapter-react)
-2. "Verify Identity" button that triggers ZKYCProcess
-3. A success page that displays the proof and lets the user anchor it on-chain
-4. A failed page with retry
-Include all files, imports, Move snippet if needed, and a brief setup guide.`,
+Build a full Next.js app with these pages:
 
-  python: `Build me a complete working Python example with two scripts — a seller agent and a buyer agent — using the zKYC Python SDK.
+1. **Home page** — Aptos wallet connect button (use @aptos-labs/wallet-adapter-react), then a demo form with three labeled inputs:
+   - API Key (type=password, placeholder "test_... or prod_...")
+   - Success URL (pre-filled with \`\${window.location.origin}/kyc-success\`)
+   - Failure URL (pre-filled with \`\${window.location.origin}/kyc-failed\`)
+   A "Verify Identity" button reads those inputs and calls \`ZKYCProcess({ apiKey, successPage, failurePage })\`. Store the apiKey in sessionStorage.
+
+2. **/kyc-success page** — displays the proof string returned after verification, and a button to anchor the proof on-chain via the connected Aptos wallet.
+
+3. **/kyc-failed page** — failure message and "Try Again" button back to home.
+
+Include all files, imports, TypeScript types, a Move snippet if relevant, and a 3-step setup guide.`,
+
+  python: `Vibe-code me a complete Python demo with two runnable scripts — a seller agent and a buyer agent — using the zKYC Python SDK. All configuration must come from CLI args or a .env file so the demo is fully parameterizable.
 
 **Package:** pip install zkyc-agent
 
-**Config:**
+**Config (read from .env or CLI):**
 from zkyc import ZKYCConfig
 config = ZKYCConfig(
-    agent_id="YOUR_AGENT_ID",
-    private_key="0x...",
-    rpc_url="https://sepolia.base.org",
-    api_base="https://api.zkyc.tech",
-    registry_address="0xYOUR_REGISTRY",
-    reputation_address="0xYOUR_REPUTATION",
+    agent_id=os.getenv("AGENT_ID"),
+    private_key=os.getenv("PRIVATE_KEY"),
+    rpc_url=os.getenv("RPC_URL", "https://sepolia.base.org"),
+    api_base=os.getenv("API_BASE", "https://api.zkyc.tech"),
+    registry_address=os.getenv("REGISTRY_ADDRESS"),
+    reputation_address=os.getenv("REPUTATION_ADDRESS"),
 )
 
 **Seller:** @seller.on_request("action") decorator + seller.listen()
 **Buyer:** buyer.find_agent(action, min_rating) → buyer.call(seller, params) → buyer.wait_for_result(job) → buyer.rate(job)
 
-Please generate:
-1. seller.py — a seller agent that registers a "verify_identity" action and returns a mock KYC result
-2. buyer.py — a buyer agent that finds the seller, pays, and prints the result
-3. .env.example with all required variables
-4. A brief setup and run guide
-Include full working code with error handling and comments.`,
+Generate:
+1. seller.py — registers a "verify_identity" action, reads all config from env, returns a mock KYC result
+2. buyer.py — reads all config from env, finds the seller, calls it, prints the result, and rates the job
+3. .env.example listing every required variable with descriptions
+4. A brief setup and run guide (pip install → fill .env → python seller.py / python buyer.py)
+
+Include full working code with error handling, comments, and python-dotenv usage.`,
 };
 
 interface AskAIProps {
