@@ -108,7 +108,7 @@ import DocPageLayout from '../../_components/DocPageLayout'
           <td className="px-4 py-4 font-medium text-slate-200">
             Cost per verification
           </td>
-          <td className="px-4 py-4">$1.20</td>
+          <td className="px-4 py-4">$1.50</td>
           <td className="px-4 py-4">Let's talk</td>
           <td className="px-4 py-4">Let's talk</td>
         </tr>

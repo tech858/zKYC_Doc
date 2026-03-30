@@ -721,7 +721,7 @@ def create_zkyc_pdf():
         ['Address verification', '—', '+', '✓'],
         ['Video verification', '—', '—', '✓'],
         ['Ongoing monitoring', '—', '—', '+'],
-        ['Cost per verification', '$1.20', "Let's talk", "Let's talk"],
+        ['Cost per verification', '$1.50', "Let's talk", "Let's talk"],
     ]
 
     services_table = Table(services_data, colWidths=[2.2 * inch, 1.3 * inch, 1.3 * inch, 1.3 * inch])
