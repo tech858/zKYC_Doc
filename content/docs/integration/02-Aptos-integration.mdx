@@ -14,9 +14,8 @@ This guide walks you through how to use zKYC to allow users to verify their iden
 ---
 
 ## Step 1 — Install the SDK
-```bash
-npm i zkyc-aptos-package@latest
-```
+
+<PackageManagerTabs packageName="zkyc-aptos-package@latest" />
 
 ---
 
@@ -24,16 +23,17 @@ npm i zkyc-aptos-package@latest
 
 Call `ZKYCProcess` when a user needs to verify their identity.
 This redirects them to the hosted zKYC verification flow.
-```tsx
-import { ZKYCProcess } from "zkyc-sdk-package";
+<KycCodeBlock
+  title="Aptos-Kyc-button.tsx"
+  code={`import { ZKYCProcess } from "zkyc-sdk-package";
 
 export default function VerifyButton() {
   const handleVerify = async () => {
     try {
       await ZKYCProcess({
         apiKey: "test_your_key_here",
-        successPage: `${window.location.origin}/verification-success`,
-        failurePage: `${window.location.origin}/verification-failed`,
+        successPage: \`\${window.location.origin}/kyc-success\`,
+        failurePage: \`\${window.location.origin}/kyc-failed\`,
       });
     } catch (error) {
       console.error("Failed to start verification:", error);
@@ -41,8 +41,8 @@ export default function VerifyButton() {
   };
 
   return <button onClick={handleVerify}>Verify Identity</button>;
-}
-```
+}`}
+/>  
 
 <Callout type="info">
   Use a `test_` prefixed key during development. Test keys use a sandboxed environment with simulated documents and do not charge per verification.

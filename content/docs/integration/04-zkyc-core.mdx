@@ -26,28 +26,29 @@ Third party calls /verify before executing
 ## Quickstart
 
 ### 1. Install
-```bash
-# Decision only
-npm install @kyc/zkyc-core
 
-# With x402 autonomous refund execution
-npm install @kyc/zkyc-core viem @x402/core @x402/evm
-```
+<PackageManagerTabs packageName="install @kyc/zkyc-core" />
+<PackageManagerTabs packageName="install @kyc/zkyc-core viem @x402/core @x402/evm
+" />
 
 ### 2. Create a client
-```typescript
-import { createZkycClient } from '@kyc/zkyc-core'
+
+<KycCodeBlock
+  title="client.ts"
+  code={`import { createZkycClient } from '@kyc/zkyc-core'
 
 const zkyc = createZkycClient({
   apiKey: process.env.ZKYC_API_KEY,
   agentId: 'refund-agent', // identifies which agent in your dashboard
   baseUrl: 'https://api.zkyc.tech/api/zkyc-core',
-})
-```
+})`}
+/>
 
 ### 3. Evaluate an action
-```typescript
-const decision = await zkyc.check({
+
+<KycCodeBlock
+  title="evaluate.ts"
+  code={`const decision = await zkyc.check({
   action: 'Refund $10 for order #8821',
   amount: 10,
   orderId: '#8821',
@@ -65,15 +66,17 @@ switch (decision.result) {
   case 'STEP_UP':
     // hold — save decision.checkId and wait for webhook
     break
-}
-```
+}`}
+/>
 
 ### 4. Enforce with the AuthorityReceipt
 
 Every `check()` response includes a signed `authorityReceipt`. Pass this to any
 third party that needs to verify the decision before executing:
-```typescript
-// Merchant or API provider calls this before committing
+
+<KycCodeBlock
+  title="verify.ts"
+  code={`// Merchant or API provider calls this before committing
 const verification = await fetch('https://api.zkyc.tech/api/zkyc-core/verify', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
@@ -83,29 +86,31 @@ const verification = await fetch('https://api.zkyc.tech/api/zkyc-core/verify', {
 const { data } = await verification.json()
 
 if (!data.valid) {
-  throw new Error(`Receipt invalid: ${data.result}`)
+  throw new Error(\`Receipt invalid: \${data.result}\`)
 }
 
 // Safe to execute
-await commitOrder()
-```
+await commitOrder()`}
+/>
 
 ---
 
 ## SDK Reference
 
 ### `createZkycClient(options)`
-```typescript
-createZkycClient({
+
+<KycCodeBlock
+  title="createZkycClient.ts"
+  code={`createZkycClient({
   apiKey: string        // required — from your zKYC dashboard
   agentId: string       // required — identifies the agent in your logs
   baseUrl?: string      // optional — defaults to https://api.zkyc.tech/api/zkyc-core
   x402?: {
-    privateKey: `0x${string}` // merchant wallet key for USDC transfers
+    privateKey: \`0x\${string}\` // merchant wallet key for USDC transfers
     network?: 'base' | 'base-sepolia' // defaults to 'base'
   }
-})
-```
+})`}
+/>
 
 ---
 
@@ -113,24 +118,28 @@ createZkycClient({
 
 Evaluate any action against your configured tiers. Returns a decision and a
 signed AuthorityReceipt.
-```typescript
-const decision = await zkyc.check({
+
+<KycCodeBlock
+  title="check.ts"
+  code={`const decision = await zkyc.check({
   action: string        // required — human readable description
   [key: string]: unknown // any extra context — amount, userId, orderId etc
-})
-```
+})`}
+/>
 
 **Returns:**
-```typescript
-{
+
+<KycCodeBlock
+  title="check_return.ts"
+  code={`{
   result: 'ALLOW' | 'DENY' | 'STEP_UP'
   tier: 1 | 2 | 3
   reasoning: string
   checkId: string
   detectedAction?: string
   authorityReceipt: string | null  // base64 signed receipt
-}
-```
+}`}
+/>
 
 ---
 
@@ -138,18 +147,22 @@ const decision = await zkyc.check({
 
 Evaluate a refund action and — if ALLOW and x402 is configured — automatically
 push USDC to the customer's x402-compatible endpoint.
-```typescript
-const result = await zkyc.checkAndRefund({
+
+<KycCodeBlock
+  title="checkAndRefund.ts"
+  code={`const result = await zkyc.checkAndRefund({
   action: string           // required
   amount: number           // required — USD amount
   customerEndpoint: string // required — customer's x402 receive endpoint
   [key: string]: unknown
-})
-```
+})`}
+/>
 
 **Returns:**
-```typescript
-// ALLOW + x402 configured
+
+<KycCodeBlock
+  title="checkAndRefund_return.ts"
+  code={`// ALLOW + x402 configured
 { status: 'refunded', txHash: string, amount: number, to: string }
 
 // ALLOW + no x402 config
@@ -159,8 +172,8 @@ const result = await zkyc.checkAndRefund({
 { status: 'denied', reason: string }
 
 // STEP_UP
-{ status: 'pending_review', checkId: string, reason: string }
-```
+{ status: 'pending_review', checkId: string, reason: string }`}
+/>
 
 ---
 
@@ -169,12 +182,14 @@ const result = await zkyc.checkAndRefund({
 Execute a refund directly without re-running the risk check.
 Use this in your webhook handler after a STEP_UP is approved.
 Requires x402 to be configured.
-```typescript
-const { txHash } = await zkyc.executeRefund(
+
+<KycCodeBlock
+  title="executeRefund.ts"
+  code={`const { txHash } = await zkyc.executeRefund(
   'https://customer-agent.com/receive',
   10
-)
-```
+)`}
+/>
 
 ---
 
@@ -182,10 +197,12 @@ const { txHash } = await zkyc.executeRefund(
 
 Resolve a pending STEP_UP after manual review. Call this from your webhook
 handler when you receive the approval notification.
-```typescript
-await zkyc.resolve(decision.checkId, true)  // approved
-await zkyc.resolve(decision.checkId, false) // denied
-```
+
+<KycCodeBlock
+  title="resolve.ts"
+  code={`await zkyc.resolve(decision.checkId, true)  // approved
+await zkyc.resolve(decision.checkId, false) // denied`}
+/>
 
 ---
 
@@ -222,8 +239,10 @@ When a decision comes back as STEP_UP:
 3. Reviewer approves or denies in the zKYC dashboard
 4. Your registered webhook receives `{ checkId, approved }`
 5. Call `zkyc.resolve(checkId, approved)` then execute or cancel
-```typescript
-// 1. Agent receives STEP_UP
+
+<KycCodeBlock
+  title="stepup_flow.ts"
+  code={`// 1. Agent receives STEP_UP
 if (result.status === 'pending_review') {
   await db.pending.save({
     checkId: result.checkId,
@@ -244,8 +263,8 @@ app.post('/webhooks/zkyc', async (req, res) => {
   }
 
   res.json({ ok: true })
-})
-```
+})`}
+/>
 
 ---
 
@@ -281,8 +300,10 @@ containing the decision, tier, active conditions, and expiry, signed by zKYC.
 **Use it when a third party needs to verify the decision independently**
 before committing an irreversible action — order fulfillment, service execution,
 refund approval.
-```typescript
-POST /api/zkyc-core/verify
+
+<KycCodeBlock
+  title="verify_api.ts"
+  code={`POST /api/zkyc-core/verify
 { "authorityReceipt": "<receipt>" }
 
 // Response
@@ -293,8 +314,8 @@ POST /api/zkyc-core/verify
     "result": "ALLOW",
     "expiresAt": "2025-01-01T00:05:00.000Z"
   }
-}
-```
+}`}
+/>
 
 Possible `result` values on invalid receipts:
 
@@ -312,13 +333,15 @@ Possible `result` values on invalid receipts:
 Register your webhook URL from the zKYC dashboard under **Settings → Webhook**.
 
 Your endpoint will receive a POST when any STEP_UP is resolved:
-```typescript
-// Payload
+
+<KycCodeBlock
+  title="webhook_payload.ts"
+  code={`// Payload
 {
   checkId: string   // matches the checkId from check()
   approved: boolean // true = merchant approved, false = denied
-}
-```
+}`}
+/>
 
 Respond with any 2xx status to acknowledge.
 
@@ -334,16 +357,18 @@ send USDC to the customer's agent endpoint using the x402 protocol.
 - Customer's agent must expose an x402-compatible endpoint that:
   - Returns HTTP 402 on first request with `PAYMENT-REQUIRED` header
   - Accepts USDC payment and processes the refund on retry
-```typescript
-const zkyc = createZkycClient({
+
+<KycCodeBlock
+  title="x402_config.ts"
+  code={`const zkyc = createZkycClient({
   apiKey: '...',
   agentId: 'refund-agent',
   x402: {
     privateKey: process.env.MERCHANT_WALLET_KEY,
     network: 'base', // or 'base-sepolia' for testnet
   },
-})
-```
+})`}
+/>
 
 **Install x402 dependencies:**
 ```bash
@@ -355,8 +380,10 @@ npm install viem @x402/core @x402/evm
 ## Error handling
 
 All SDK methods throw `ZkycError` on failure:
-```typescript
-import { ZkycError } from '@kyc/zkyc-core'
+
+<KycCodeBlock
+  title="error_handling.ts"
+  code={`import { ZkycError } from '@kyc/zkyc-core'
 
 try {
   const decision = await zkyc.check({ action: '...' })
@@ -365,8 +392,8 @@ try {
     console.error(e.message, e.status)
     // e.status — HTTP status code from the API
   }
-}
-```
+}`}
+/>
 
 ---
 
@@ -390,8 +417,10 @@ All routes are under `/api/zkyc-core`.
 ---
 
 ## Full example — autonomous refund agent
-```typescript
-import { createZkycClient, ZkycError } from '@kyc/zkyc-core'
+
+<KycCodeBlock
+  title="refund_agent.ts"
+  code={`import { createZkycClient, ZkycError } from '@kyc/zkyc-core'
 
 const zkyc = createZkycClient({
   apiKey: process.env.ZKYC_API_KEY,
@@ -405,19 +434,19 @@ const zkyc = createZkycClient({
 // Agent processes a refund request
 async function processRefund(orderId: string, amount: number, customerEndpoint: string) {
   const result = await zkyc.checkAndRefund({
-    action: `Refund $${amount} for order ${orderId}`,
+    action: \`Refund $\${amount} for order \${orderId}\`,
     amount,
     customerEndpoint,
     orderId,
   })
 
   if (result.status === 'refunded') {
-    console.log(`Sent $${result.amount} — tx: ${result.txHash}`)
+    console.log(\`Sent $\${result.amount} — tx: \${result.txHash}\`)
     return
   }
 
   if (result.status === 'denied') {
-    console.log(`Denied: ${result.reason}`)
+    console.log(\`Denied: \${result.reason}\`)
     return
   }
 
@@ -441,9 +470,9 @@ app.post('/webhooks/zkyc', async (req, res) => {
 
   if (approved) {
     const { txHash } = await zkyc.executeRefund(state.customerEndpoint, state.amount)
-    console.log(`Refund executed — tx: ${txHash}`)
+    console.log(\`Refund executed — tx: \${txHash}\`)
   }
 
   res.json({ ok: true })
-})
-```
+})`}
+/>

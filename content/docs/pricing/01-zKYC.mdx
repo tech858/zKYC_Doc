@@ -2,108 +2,103 @@
 title: zKYC services
 ---
 
-import { CheckIcon, MinusIcon, PlusIcon } from '../../_components/icons'
 import DocPageLayout from '../../_components/DocPageLayout'
 
-<DocPageLayout
-  description="Compare verification coverage and costs across zKYC plans."
->
-  <div className="mb-10 overflow-x-auto rounded-2xl border border-white/10 bg-white/5">
-    <table className="w-full min-w-[720px] text-left text-sm">
-      <thead className="bg-white/5">
-        <tr>
-          <th className="px-4 py-4 font-semibold text-white">Feature</th>
-          <th className="px-4 py-4 font-semibold text-white">Basic</th>
-          <th className="px-4 py-4 font-semibold text-white">Standard</th>
-          <th className="px-4 py-4 font-semibold text-white">Full KYC</th>
-        </tr>
-      </thead>
-      <tbody className="divide-y divide-white/5">
-        <tr>
-          <td className="px-4 py-4 font-medium text-slate-200">Initial deposit</td>
-          <td className="px-4 py-4">$100</td>
-          <td className="px-4 py-4">Let's talk</td>
-          <td className="px-4 py-4">Let's talk</td>
-        </tr>
+<DocPageLayout description="Verification pricing, bulk credits, and commission rates.">
 
-        <tr>
-          <td className="px-4 py-4 font-medium text-slate-200">Document verification + OCR</td>
-          <td className="px-4 py-4"><CheckIcon className="h-5 w-5 text-white" /></td>
-          <td className="px-4 py-4"><CheckIcon className="h-5 w-5 text-white" /></td>
-          <td className="px-4 py-4"><CheckIcon className="h-5 w-5 text-white" /></td>
-        </tr>
-
-        <tr>
-          <td className="px-4 py-4 font-medium text-slate-200">Facial verification (liveness)</td>
-          <td className="px-4 py-4"><CheckIcon className="h-5 w-5 text-white" /></td>
-          <td className="px-4 py-4"><CheckIcon className="h-5 w-5 text-white" /></td>
-          <td className="px-4 py-4"><CheckIcon className="h-5 w-5 text-white" /></td>
-        </tr>
-
-        <tr>
-          <td className="px-4 py-4 font-medium text-slate-200">Zero-knowledge proofs</td>
-          <td className="px-4 py-4"><CheckIcon className="h-5 w-5 text-white" /></td>
-          <td className="px-4 py-4"><CheckIcon className="h-5 w-5 text-white" /></td>
-          <td className="px-4 py-4"><CheckIcon className="h-5 w-5 text-white" /></td>
-        </tr>
-
-        <tr>
-          <td className="px-4 py-4 font-medium text-slate-200">Emailing service</td>
-          <td className="px-4 py-4"><MinusIcon className="h-5 w-5 text-slate-400" /></td>
-          <td className="px-4 py-4"><CheckIcon className="h-5 w-5 text-white" /></td>
-          <td className="px-4 py-4"><CheckIcon className="h-5 w-5 text-white" /></td>
-        </tr>
-
-        <tr>
-          <td className="px-4 py-4 font-medium text-slate-200">AML screening</td>
-          <td className="px-4 py-4"><MinusIcon className="h-5 w-5 text-slate-400" /></td>
-          <td className="px-4 py-4"><PlusIcon className="h-5 w-5 text-slate-400" /></td>
-          <td className="px-4 py-4"><CheckIcon className="h-5 w-5 text-white" /></td>
-        </tr>
-
-        <tr>
-          <td className="px-4 py-4 font-medium text-slate-200">Address verification</td>
-          <td className="px-4 py-4"><MinusIcon className="h-5 w-5 text-slate-400" /></td>
-          <td className="px-4 py-4"><PlusIcon className="h-5 w-5 text-slate-400" /></td>
-          <td className="px-4 py-4"><CheckIcon className="h-5 w-5 text-white" /></td>
-        </tr>
-
-        <tr>
-          <td className="px-4 py-4 font-medium text-slate-200">Video verification</td>
-          <td className="px-4 py-4"><MinusIcon className="h-5 w-5 text-slate-400" /></td>
-          <td className="px-4 py-4"><MinusIcon className="h-5 w-5 text-slate-400" /></td>
-          <td className="px-4 py-4"><CheckIcon className="h-5 w-5 text-white" /></td>
-        </tr>
-
-        <tr>
-          <td className="px-4 py-4 font-medium text-slate-200">Ongoing monitoring</td>
-          <td className="px-4 py-4"><MinusIcon className="h-5 w-5 text-slate-400" /></td>
-          <td className="px-4 py-4"><MinusIcon className="h-5 w-5 text-slate-400" /></td>
-          <td className="px-4 py-4"><PlusIcon className="h-5 w-5 text-slate-400" /></td>
-        </tr>
-
-        <tr>
-          <td className="px-4 py-4 font-medium text-slate-200">Cost per verification</td>
-          <td className="px-4 py-4">$1.50</td>
-          <td className="px-4 py-4">Let's talk</td>
-          <td className="px-4 py-4">Let's talk</td>
-        </tr>
-
-        <tr>
-          <td className="px-4 py-4 font-medium text-slate-200">AI agent creation</td>
-          <td className="px-4 py-4">$1.50</td>
-          <td className="px-4 py-4">Let's talk</td>
-          <td className="px-4 py-4">Let's talk</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <section className="rounded-2xl border border-white/10 bg-white/5 p-6 text-sm text-slate-300">
-    <h3 className="mb-3 font-semibold text-white">Notes</h3>
-    <ul className="list-disc space-y-2 pl-5">
-      <li>Minimum monthly spend applies if usage is below $100.</li>
-      <li>Pricing may change with advance notice.</li>
-    </ul>
+  {/* KYC Pay-As-You-Go */}
+  <section className="mb-8">
+    <h2 className="mb-4 text-lg font-semibold text-white">KYC Pay-As-You-Go</h2>
+    <div className="overflow-x-auto rounded-2xl border border-white/10 bg-white/5">
+      <table className="w-full text-left text-sm">
+        <tbody className="divide-y divide-white/5">
+          <tr>
+            <td className="px-4 py-3 font-medium text-slate-400">Price per KYC</td>
+            <td className="px-4 py-3 text-white">$1.50</td>
+          </tr>
+          <tr>
+            <td className="px-4 py-3 font-medium text-slate-400">Provider Cost</td>
+            <td className="px-4 py-3 text-white">$0.75</td>
+          </tr>
+          <tr>
+            <td className="px-4 py-3 font-medium text-slate-400">Profit Per KYC</td>
+            <td className="px-4 py-3 text-white">$0.75</td>
+          </tr>
+          <tr>
+            <td className="px-4 py-3 font-medium text-slate-400">Example Volume</td>
+            <td className="px-4 py-3 text-white">5,000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p className="mt-2 text-xs text-slate-400">Note: $100 deposit to start</p>
   </section>
+
+  {/* KYC Bulk Credits */}
+  <section className="mb-8">
+    <h2 className="mb-4 text-lg font-semibold text-white">KYC Bulk Credits</h2>
+    <div className="overflow-x-auto rounded-2xl border border-white/10 bg-white/5">
+      <table className="w-full min-w-150 text-left text-sm">
+        <thead className="bg-white/5">
+          <tr>
+            <th className="px-4 py-3 font-semibold text-white">Volume Tier</th>
+            <th className="px-4 py-3 font-semibold text-white">Tier Volume</th>
+            <th className="px-4 py-3 font-semibold text-white">Price per KYC</th>
+            <th className="px-4 py-3 font-semibold text-white">Provider Cost</th>
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-white/5">
+          <tr>
+            <td className="px-4 py-3 font-medium text-slate-200">10,000 KYCs</td>
+            <td className="px-4 py-3 text-slate-300">10,000</td>
+            <td className="px-4 py-3 text-slate-300">$1.25</td>
+            <td className="px-4 py-3 text-slate-300">$0.75</td>
+          </tr>
+          <tr>
+            <td className="px-4 py-3 font-medium text-slate-200">50,000 KYCs</td>
+            <td className="px-4 py-3 text-slate-300">50,000</td>
+            <td className="px-4 py-3 text-slate-300">$1.10</td>
+            <td className="px-4 py-3 text-slate-300">$0.75</td>
+          </tr>
+          <tr>
+            <td className="px-4 py-3 font-medium text-slate-200">100,000 KYCs</td>
+            <td className="px-4 py-3 text-slate-300">100,000</td>
+            <td className="px-4 py-3 text-slate-300">$1.00</td>
+            <td className="px-4 py-3 text-slate-300">$0.75</td>
+          </tr>
+          <tr>
+            <td className="px-4 py-3 font-medium text-slate-200">250,000+ KYCs</td>
+            <td className="px-4 py-3 text-slate-300">250,000</td>
+            <td className="px-4 py-3 text-slate-300">$0.95</td>
+            <td className="px-4 py-3 text-slate-300">$0.75</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p className="mt-2 text-xs text-slate-400">Note: $100 deposit to start</p>
+  </section>
+
+  {/* KYC External BD Commission Rates */}
+  <section className="mb-8">
+    <h2 className="mb-4 text-lg font-semibold text-white">KYC External BD Commission Rates</h2>
+    <div className="overflow-x-auto rounded-2xl border border-white/10 bg-white/5">
+      <table className="w-full text-left text-sm">
+        <tbody className="divide-y divide-white/5">
+          <tr>
+            <td className="px-4 py-3 font-medium text-slate-400">Sourced</td>
+            <td className="px-4 py-3 text-white">2%</td>
+          </tr>
+          <tr>
+            <td className="px-4 py-3 font-medium text-slate-400">Led & Closed</td>
+            <td className="px-4 py-3 text-white">5%</td>
+          </tr>
+          <tr>
+            <td className="px-4 py-3 font-medium text-slate-400">Average</td>
+            <td className="px-4 py-3 text-white">3.50%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
 </DocPageLayout>
