@@ -99,7 +99,7 @@ export default function AskAI({ pageKey = "kyc" }: AskAIProps) {
         className="inline-flex items-center gap-2 rounded-md bg-white/5 px-4 py-2 text-sm font-semibold text-white ring-1 ring-inset ring-white/10 transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
       >
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M17.304 12.235c.27-.129.52-.296.74-.497a3.547 3.547 0 0 0 1.08-3.837 3.55 3.55 0 0 0-3.232-2.392H8.555a.623.623 0 0 0-.623.623v11.736c0 .344.28.623.623.623h7.554a3.677 3.677 0 0 0 3.677-3.677 3.68 3.68 0 0 0-2.482-3.579zM9.8 7.37h5.856a2.202 2.202 0 0 1 0 4.403H9.8V7.37zm5.998 9.024H9.8v-3.276h5.998a1.638 1.638 0 0 1 0 3.276z"/>
+          <path d="M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z"/>
         </svg>
         Ask Claude
       </a>

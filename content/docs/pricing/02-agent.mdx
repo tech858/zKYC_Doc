@@ -1,70 +1,81 @@
 ---
-title: Agent services
+title: Agent KYA Pricing
 ---
 
 import DocPageLayout from '../../_components/DocPageLayout'
 
-<DocPageLayout description="Agent verification pricing, bulk credits, and commission rates.">
+<DocPageLayout description="Know Your Agent pricing for autonomous AI agents, agent marketplaces, and agent payment networks.">
 
-  {/* Agent Pay-As-You-Go */}
-  <section className="mb-8">
-    <h2 className="mb-4 text-lg font-semibold text-white">Agent Pay-As-You-Go</h2>
-    <div className="overflow-x-auto rounded-2xl border border-white/10 bg-white/5">
-      <table className="w-full text-left text-sm">
-        <tbody className="divide-y divide-white/5">
-          <tr>
-            <td className="px-4 py-3 font-medium text-slate-400">Price per Agent</td>
-            <td className="px-4 py-3 text-white">$2.50</td>
-          </tr>
-       
-        </tbody>
-      </table>
-    </div>
-    <p className="mt-2 text-xs text-slate-400">Note: $100 deposit to start</p>
+  {/* Intro */}
+  <section className="mb-8 space-y-2 text-sm text-slate-600 dark:text-white/55">
+    <p>$2.50 per agent. Pay as you go for your first 1 to 99 agent verifications.</p>
+    <p>As low as $1.25 per agent. Volume discounts begin at 100+ agents.</p>
+    <p>$100 deposit to activate.</p>
   </section>
 
-  {/* Agent Bulk Credits */}
+  {/* Agent KYA Pricing Table */}
   <section className="mb-8">
-    <h2 className="mb-4 text-lg font-semibold text-white">Agent Bulk Credits</h2>
-    <div className="overflow-x-auto rounded-2xl border border-white/10 bg-white/5">
-      <table className="w-full text-left text-sm">
-        <thead className="bg-white/5">
+    <h2 className="mb-4 text-lg font-semibold text-slate-900 dark:text-white">Agent KYA Pricing</h2>
+    <div className="glass-card overflow-x-auto rounded-2xl">
+      <table className="w-full min-w-150 text-left text-sm">
+        <thead className="bg-slate-900/3 dark:bg-white/4">
           <tr>
-            <th className="px-4 py-3 font-semibold text-white">Volume Tier</th>
-            <th className="px-4 py-3 font-semibold text-white">Tier Volume</th>
-            <th className="px-4 py-3 font-semibold text-white">Price per Agent</th>
-            
+            <th className="px-4 py-3 font-semibold text-slate-900 dark:text-white">Volume Tier</th>
+            <th className="px-4 py-3 font-semibold text-slate-900 dark:text-white">Tier Volume</th>
+            <th className="px-4 py-3 font-semibold text-slate-900 dark:text-white">Price per Agent</th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-white/5">
+        <tbody className="divide-y divide-slate-900/6 dark:divide-white/5">
           <tr>
-            <td className="px-4 py-3 font-medium text-slate-200">100 agents</td>
-            <td className="px-4 py-3 text-slate-300">100</td>
-            <td className="px-4 py-3 text-slate-300">$2.00</td>
-          
+            <td className="px-4 py-3 font-medium text-slate-800 dark:text-white/80">Pay-as-you-go</td>
+            <td className="px-4 py-3 text-slate-600 dark:text-white/55">1 to 99 agents</td>
+            <td className="px-4 py-3 text-slate-600 dark:text-white/55">$2.50</td>
           </tr>
           <tr>
-            <td className="px-4 py-3 font-medium text-slate-200">1,000 agents</td>
-            <td className="px-4 py-3 text-slate-300">1,000</td>
-            <td className="px-4 py-3 text-slate-300">$1.75</td>
-            
+            <td className="px-4 py-3 font-medium text-slate-800 dark:text-white/80">100+ agents</td>
+            <td className="px-4 py-3 text-slate-600 dark:text-white/55">100</td>
+            <td className="px-4 py-3 text-slate-600 dark:text-white/55">$2.00</td>
           </tr>
           <tr>
-            <td className="px-4 py-3 font-medium text-slate-200">10,000 agents</td>
-            <td className="px-4 py-3 text-slate-300">10,000</td>
-            <td className="px-4 py-3 text-slate-300">$1.50</td>
-            
+            <td className="px-4 py-3 font-medium text-slate-800 dark:text-white/80">1,000+ agents</td>
+            <td className="px-4 py-3 text-slate-600 dark:text-white/55">1,000</td>
+            <td className="px-4 py-3 text-slate-600 dark:text-white/55">$1.75</td>
           </tr>
           <tr>
-            <td className="px-4 py-3 font-medium text-slate-200">50,000+ agents</td>
-            <td className="px-4 py-3 text-slate-300">50,000</td>
-            <td className="px-4 py-3 text-slate-300">$1.25</td>
-            
+            <td className="px-4 py-3 font-medium text-slate-800 dark:text-white/80">10,000+ agents</td>
+            <td className="px-4 py-3 text-slate-600 dark:text-white/55">10,000</td>
+            <td className="px-4 py-3 text-slate-600 dark:text-white/55">$1.50</td>
+          </tr>
+          <tr>
+            <td className="px-4 py-3 font-medium text-slate-800 dark:text-white/80">50,000+ agents</td>
+            <td className="px-4 py-3 text-slate-600 dark:text-white/55">50,000+</td>
+            <td className="px-4 py-3 text-slate-600 dark:text-white/55">$1.25</td>
           </tr>
         </tbody>
       </table>
     </div>
-    <p className="mt-2 text-xs text-slate-400">Note: $100 deposit to start</p>
+    <p className="mt-2 text-xs text-slate-500 dark:text-white/35">Note: $100 deposit to activate.</p>
+  </section>
+
+  {/* Included with Agent KYA */}
+  <section className="mb-8">
+    <h2 className="mb-4 text-lg font-semibold text-slate-900 dark:text-white">Included with Agent KYA</h2>
+    <ul className="list-disc space-y-1 pl-5 text-sm text-slate-600 dark:text-white/55">
+      <li>Agent identity verification, KYA</li>
+      <li>Reusable agent credential, ERC-8004</li>
+      <li>Trustless agent payments, X402</li>
+      <li>Time-bound, instantly revocable authority</li>
+      <li>SDK and API access</li>
+    </ul>
+  </section>
+
+  {/* CTA */}
+  <section className="glass-card mb-8 rounded-2xl p-6">
+    <p className="mb-3 text-sm text-slate-600 dark:text-white/55">Start with pay-as-you-go or contact sales for bulk agent credits.</p>
+    <div className="flex flex-wrap gap-3">
+      <span className="rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white dark:bg-white dark:text-black">Sign up for free</span>
+      <span className="rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-600 dark:border-white/12 dark:text-white/60">Contact Sales</span>
+    </div>
   </section>
 
   {/* Agent External BD Commission Rates */}

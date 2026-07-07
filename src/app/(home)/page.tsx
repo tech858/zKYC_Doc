@@ -1,11 +1,9 @@
-import Link from 'next/link';
-import { redirect } from 'next/navigation';
+import Hero from '@/components/hero';
 
 export default function HomePage() {
-    redirect('/docs/get-started/overview');
   return (
-    <div className="flex flex-col justify-center text-center flex-1">
-      
+    <div className="flex flex-1 flex-col">
+      <Hero />
     </div>
   );
 }

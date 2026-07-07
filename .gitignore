@@ -10,7 +10,7 @@
 /out/
 /build
 *.tsbuildinfo
-
+/claude-instructions/*
 # misc
 .DS_Store
 *.pem
