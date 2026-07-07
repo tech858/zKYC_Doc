@@ -135,6 +135,12 @@ header {
   background: var(--surface-violet);
 }
 
+/* Brand title link inside the sidebar: white in dark mode, black in light mode */
+#nd-sidebar a[href='/'] {
+  color: var(--foreground);
+  opacity: 1;
+}
+
 #nd-sidebar a[data-active='true'],
 #nd-sidebar a[aria-current='page'] {
   opacity: 1;
