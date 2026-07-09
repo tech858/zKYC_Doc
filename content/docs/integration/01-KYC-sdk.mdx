@@ -59,6 +59,26 @@ export default function KYCButton() {
 | **failurePage** | URL to redirect the user if verification fails. |
 | **successPage** | URL to redirect the user when verification is completed and the proof is claimed by the user. |
 
+### After success
+
+The user will be redirected to the success page you implemented. The redirect URL will include a `token` query argument — fetch its value and call the API with it, as shown in the example below.
+
+<KycCodeBlock
+  title="verify-token.ts"
+  code={`const params = new URLSearchParams(window.location.search);
+const token = params.get('token');
+
+const response = await fetch('https://api.zkyc.tech/api/kyc/flow-stage', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({ token }),
+});
+
+const data = await response.json();`}
+/>
+
 ### Check our repo in github
 
 <a href="https://github.com/tech858/aws_zkyc_test" target="_blank" rel="noreferrer">
