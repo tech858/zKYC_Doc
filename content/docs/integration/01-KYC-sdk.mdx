@@ -72,11 +72,22 @@ const response = await fetch('https://api.zkyc.tech/api/kyc/flow-stage', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
+    Authorization: \`Bearer \${apiKey}\`,
   },
   body: JSON.stringify({ token }),
-});
+})
 
 const data = await response.json();`}
+/>
+
+### API response
+
+<KycCodeBlock
+  title="verify-token-response.json"
+  code={`{
+  "success": true,
+  "data": { "flowStage": "draft" }
+}`}
 />
 
 ### Check our repo in github
