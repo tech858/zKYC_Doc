@@ -1,7 +1,7 @@
 import { getPageImage, source } from '@/lib/source';
 import { notFound } from 'next/navigation';
 import { ImageResponse } from 'next/og';
-import { generate as DefaultImage } from 'fumadocs-ui/og';
+import { ZkycOgImage } from '@/lib/og-image';
 
 export const revalidate = false;
 
@@ -14,7 +14,7 @@ export async function GET(
   if (!page) notFound();
 
   return new ImageResponse(
-    <DefaultImage
+    <ZkycOgImage
       title={page.data.title}
       description={page.data.description}
       site="zKYC"

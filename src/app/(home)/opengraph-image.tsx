@@ -1,5 +1,5 @@
 import { ImageResponse } from 'next/og';
-import { generate as DefaultImage } from 'fumadocs-ui/og';
+import { ZkycOgImage } from '@/lib/og-image';
 
 export const revalidate = false;
 export const alt = 'zKYC Docs';
@@ -9,7 +9,7 @@ export const contentType = 'image/png';
 export default function Image() {
   return new ImageResponse(
     (
-      <DefaultImage
+      <ZkycOgImage
         title="zKYC Docs"
         description="Integrate private, reusable identity verification for humans and autonomous agents."
         site="zKYC"
